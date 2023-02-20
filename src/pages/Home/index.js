@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useWallet } from "use-wallet";
 
-import config, { HALF_YEAR_APY, ANNUAL_APY } from "../../config";
+import config from "../../config";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
