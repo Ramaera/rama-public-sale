@@ -1,0 +1,124 @@
+<div className="referral-popup loading-popup" id="login-popup">
+    <div className="referral-card px-5">
+      <div className="popup-card-heading">
+        <h3 />
+        <div className="close-popup-card" onclick="closeLoginPopup()">
+          <i className="fas fa-times" />
+        </div>
+      </div>
+      <div className="referral-content">
+        <h3>Success</h3>
+      </div>
+    </div>
+  </div>
+ 
+  <div className="referral-popup" id="referral-popup">
+    <div className="referral-card px-5">
+      <div className="popup-card-heading">
+        <h3> Referral </h3>
+        <div className="close-popup-card" onclick="closeRefferralPopup()">
+          <i className="fas fa-times" />
+        </div>
+      </div>
+      <p className="referral-text">
+        <span id="textToBeCopied">https://testnet.bscscan.com/address/0x6d836dd5b1ea8f142b233655a5f1c6f5f6e7997b'</span>
+      </p>
+      <button className="secondary-btn w-98 text-dark" onclick="copyToClipboard('textToBeCopied')">
+        Copy Referral <i className="fas fa-copy" />
+      </button>
+    </div>
+  </div>
+ 
+ 
+  <div className="popup-card-section">
+    <div className="popup-card-bg">
+      <div className="popup-card-heading">
+        <h3>Stake AMMYI Coin</h3>
+        <div className="close-popup-card" onclick="closePopup()">
+          <i className="fas fa-times" />
+        </div>
+      </div>
+      <div className="popup-card firstTable">
+        <form id="formSubmit">
+          <table className="top-table">
+            <thead>
+              <tr>
+                <th />
+                <th colSpan={2}>Tenure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{borderBottom: 'none !important'}}>
+                <td rowSpan={2}>Select</td>
+                <td colSpan={2} style={{textAlign: 'start'}}>
+                  <input type="radio" name="tenure" id="halfYearly" defaultValue="Half Yearly" className="checkbox-class" required />
+                  <label htmlFor="halfYearly">Half Yearly</label>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2} style={{textAlign: 'start'}}>
+                  <input type="radio" name="tenure" id="yearly" defaultValue="Yearly" className="checkbox-class" required />
+                  <label htmlFor="yearly">Yearly</label>
+                </td>
+              </tr>
+              <tr>
+                <td>APR</td>
+                <td colSpan={2}>
+                  <input type="number" min={0} name="aprAmount" placeholder="Enter APR" className="primary-input" readOnly />
+                </td>
+              </tr>
+              <tr>
+                <td>Number of AMMYI</td>
+                <td colSpan={2}>
+                  <input type="number" min={0} name="tokenAmount" placeholder="Enter Amount" className="primary-input" required />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <input className="secondary-btn next-btn" type="submit" defaultValue="Next" />
+        </form>
+      </div>
+      <div className="popup-card secondTable">
+        <div className="backbutton" onclick="previousPage()">
+          <p>Back</p>
+        </div>
+        <div onclick="stake()" className="secondary-btn staking-btn">
+          Start Staking
+        </div><table className="bottom-table">
+          <thead>
+            <tr>
+              <td colSpan={2}>Summary</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tenure</td>
+              <td className="tenureYearValue" id="tenureYearValue">Yearly</td>
+            </tr>
+            <tr>
+              <td>APR</td>
+              <td className="aprAmountValue">24%</td>
+            </tr>
+            <tr>
+              <td>No. of AMMYI</td>
+              <td className="tokenAmount" id="stakeAmount">100</td>
+            </tr>
+            <tr>
+              <td>Start Date</td>
+              <td id="startDate" />
+            </tr>
+            <tr>
+              <td>End Date</td>
+              <td id="endDate" />
+            </tr>
+            <tr>
+              <td>Total Reward</td>
+              <td className="totalPrice">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ 
+ 
