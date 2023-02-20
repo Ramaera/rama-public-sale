@@ -1,1 +1,7 @@
-node_modules
+# Ignore everything in repository root 
+/*
+
+!/.gitignore
+
+# Folder to not ignore
+!/build/
