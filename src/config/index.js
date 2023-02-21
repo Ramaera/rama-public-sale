@@ -19,5 +19,5 @@ export default {
     STAKING_ADDRESS:"0x9abbf958F54B20ccC7fc61E590516B167BD4A078",
     RPC:"https://blockchain.ramestta.com",
     PRICE: 0.12,
-    COINPAYMENT_SERVER:"http://103.209.147.203:1234"
+    COINPAYMENT_SERVER:"https://presale.ramaera.tk"
 }

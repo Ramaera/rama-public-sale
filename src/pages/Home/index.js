@@ -13,7 +13,7 @@ import axios from "axios";
 import Web3 from "web3";
 import Coinpayments from 'coinpayments';
 import StakingABI from "../../config/ABI/StakingABI.json"
-
+import { Text, Heading, Flex, Grid, Flex1 } from "./style/Style";
 
 
 const OneCurrencyButton = ({ currency, isSelected, onSelect }) => {
@@ -534,7 +534,7 @@ function Home(props) {
       return;
     }
     setLoading(true)
-    
+
     try {
       await stakingContract.methods
       .withdraw(id)
@@ -546,7 +546,7 @@ function Home(props) {
 
   };
   return (
-    <div className="dashboard-container" style={{ background: "#2a2337" }}>
+    <div className="dashboard-container" style={{ background: "#2a2337", }}>
 
       <StakePopUp
         show={showPopUp}
@@ -558,75 +558,48 @@ function Home(props) {
       <Header />
 
       <main>
-        <div className="main-content">
+        <div className="main-content" style={{display:"flex",alignItems:'center',justifyContent:'center'}}>
 
-          <div className="dash-content mh-450">
-            <div className="col-md-12 dash-wallet" >
-              <div
-                className="dash-wallet col-md-6"
-                style={{ minHeight: "570px !important" }}
+          <div className="dash-content" style={{}}>
+            <div className="col-md-12 dash-wallet" style={{maxWidth:""}} >
+              <Flex
+              
               >
                 {/* <div className="wallet-value circle">
                     <p>Total Balance</p>
                     <h2 style={{ color: "#8248e5", fontWeight: "bold", fontSize: "33px" }} id="totalBalance">{accountBalance}</h2>
                     <p>RAMA</p>
                   </div> */}
-                <div className="row wallet-value-info">
-                  <div className="col-md-6 col-6">
-                    <div className="wallet-info">
-                      <p>Annual APR</p>
-                      <div className="wallet-info-amount">18%</div>
+                <Grid>
+                 
+                    <div>
+                      <Text>Annual APR</Text>
+                      <Heading>18%</Heading>
                     </div>
-                  </div>
+               
 
-                  <div className="col-md-6 col-6">
-                    <div
-                      className="wallet-info"
-                      style={{
-                        marginBottom: "0px !important",
-                        paddingBottom: "0px !important",
-                      }}
-                    >
-                      <p>Rama Price </p>
-                      <div className="wallet-info-amount">
-                        <span id="yreward">$0.12</span>
-                      </div>
-                    </div>
+                  <div>
+                    <Text>Rama Price </Text>
+                    <Heading>$0.12</Heading>
                   </div>
 
 
 
-                  <div className="col-md-6 col-6">
-                    <div className="wallet-info">
-                      <p>Total Staked</p>
-                      <div className="wallet-info-amount">
-                        <span id="ystaked">{totalStakedAmount} RAMA</span>
-                      </div>
-                    </div>
+                  <div>
+                    <Text>Total Staked</Text>
+                    <Heading id="ystaked">{totalStakedAmount} RAMA</Heading>
                   </div>
 
 
 
 
-                  <div className="col-md-6 col-6">
-                    <div
-                      className="wallet-info"
-                      style={{
-                        marginBottom: "0px !important",
-                        paddingBottom: "0px !important",
-                      }}
-                    >
-                      <p>Pending Reward </p>
-                      <div className="wallet-info-amount">
-                        <span id="hreward">{Number(pendingReward).toFixed(2)} RAMA</span>
-                      </div>
-                    </div>
+                  <div >
+                    <Text>Pending Reward </Text>
+                    <Heading id="hreward">{Number(pendingReward).toFixed(2)} RAMA</Heading>  
                   </div>
 
-
-
-
-
+                </Grid>
+                <Flex1>
 
                   <div className="col-md-6 col-6">
                     <div
@@ -647,82 +620,79 @@ function Home(props) {
                   >
                     <div className="disabled-btn  font-bold disabled ">Unstake</div>
                   </div>
-                </div>
-              </div>
+                  </Flex1>
+                  <div 
+                  style={{width:"100%",height:"2px", background:"#8248e5",margin:'2rem 0 0 0'}}
+                />
 
-              <div className="row">
 
+<div>
+    <Table responsive  style={{ color: "#000" }}>
+      <thead>
+        <tr>
+          <td colSpan={2}>Id</td>
 
-                <hr style={{ color: "black", width: "100%", border: "0.5px solid #8248e5" }} />
+          <td colSpan={2}>Stake Date</td>
+          <td colSpan={2}>Staked Amount</td>
+          <td colSpan={2}>Pending Reward</td>
+          <td colSpan={2}>Unlock Time </td>
+          <td colSpan={2}>Action </td>
 
-                <div className="col-md-12">
-                  <div>
-                    <p className="card-head mt-10">Staking Information</p>
-                    <Table responsive className="bottom-table" style={{ color: "#000" }}>
-                      <thead>
-                        <tr>
-                          <td colSpan={2}>Id</td>
-
-                          <td colSpan={2}>Stake Date</td>
-                          <td colSpan={2}>Staked Amount</td>
-                          <td colSpan={2}>Pending Reward</td>
-                          <td colSpan={2}>Unlock Time </td>
-                          <td colSpan={2}>Action </td>
-
-                        </tr>
-                      </thead>
-                      <tbody>
+        </tr>
+      </thead>
+      <tbody>
 
 
 
-                        {depositData.map((e) => {
-                          return <tr>
-                            <td colSpan={2}>{e.id + 1}</td>
+        {depositData.map((e) => {
+          return <tr>
+            <td colSpan={2}>{e.id + 1}</td>
 
-                            <td colSpan={2}>  {moment.unix(e.timestamp)
-                              .format("DD MMM YYYY hh:mm a")}</td>
-                            <td colSpan={2}>{Number(e.amount).toFixed(2)} RAMA</td>
+            <td colSpan={2}>  {moment.unix(e.timestamp)
+              .format("DD MMM YYYY hh:mm a")}</td>
+            <td colSpan={2}>{Number(e.amount).toFixed(2)} RAMA</td>
 
-                            <td colSpan={2}>{Number(e.pendingReward).toFixed(2)} RAMA</td>
+            <td colSpan={2}>{Number(e.pendingReward).toFixed(2)} RAMA</td>
 
-                            <td colSpan={2}>
+            <td colSpan={2}>
 
-                              {moment.unix(e.expireTimestamp)
-                                .format("DD MMM YYYY hh:mm a")}
-                            </td>
+              {moment.unix(e.expireTimestamp)
+                .format("DD MMM YYYY hh:mm a")}
+            </td>
 
-                            <td colSpan={2}>
+            <td colSpan={2}>
 
-                              <button
-                                disabled={(Date.now()/1000)< e.expireTimestamp || e.isWithdrawn}
-                                style={{ color: "#fff !important" }}
-                                onClick={() => {
-                                  handleWithdraw(e.id);
-                                }}
-                                className={`secondary-btn next-btn ${(Date.now()/1000)< e.expireTimestamp || e.isWithdrawn?"disabled-btn":""} `}
-                              >
-                                {isLoading ? (
-                                  <div class="spinner-border" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                  </div>
-                                ) : (
-                                 e.isWithdrawn?"Claimed": "Withdraw"
-                                )}
-                              </button>
-                            </td>
-                          </tr>
-
-                        })}
-
-
-
-
-                      </tbody>
-                    </Table>
+              <button
+                disabled={(Date.now()/1000)< e.expireTimestamp || e.isWithdrawn}
+                style={{ color: "#fff !important" }}
+                onClick={() => {
+                  handleWithdraw(e.id);
+                }}
+                className={`secondary-btn next-btn ${(Date.now()/1000)< e.expireTimestamp || e.isWithdrawn?"disabled-btn":""} `}
+              >
+                {isLoading ? (
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
                   </div>
-                </div>
-              </div>
+                ) : (
+                 e.isWithdrawn?"Claimed": "Withdraw"
+                )}
+              </button>
+            </td>
+          </tr>
 
+        })}
+
+
+
+
+      </tbody>
+    </Table>
+  </div>
+
+              </Flex>
+
+             
             </div>
           </div>
         </div>
