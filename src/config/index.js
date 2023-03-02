@@ -16,7 +16,7 @@ export default {
     CHAINID:1370,
     TOTAL_ROI: 36,
     ANNUAL_ROI: 18,
-    STAKING_ADDRESS:"0x9abbf958F54B20ccC7fc61E590516B167BD4A078",
+    STAKING_ADDRESS:"0xE8E4C68aa2De7E3462a48ADF06bc13d16407072D",
     RPC:"https://blockchain.ramestta.com",
     PRICE: 0.12,
     COINPAYMENT_SERVER:"https://presale.ramaera.tk"
