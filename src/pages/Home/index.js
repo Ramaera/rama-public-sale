@@ -475,24 +475,19 @@ function Home(props) {
 
 
   const loadData = async () => {
-    console.log("LoadData")
     const walletAddress = wallet.account
     const totalDepositLength = await stakingContract.methods.getDepositLength(walletAddress).call();
     
-    console.log("totalDepositLength",totalDepositLength)
     const maxLockTime = await stakingContract.methods.MAX_LOCK_TIME().call()
     const deposits = [];
 
-    console.log({ totalDepositLength })
     let totalDeposit = 0;
     let totalReward = 0;
 
     for (let i = 0; i < totalDepositLength; i++) {
       const deposit = await stakingContract.methods.stakingInfo(walletAddress, i).call()
 
-      console.log({deposit})
       const _pendingReward = await stakingContract.methods.getPendingReward(walletAddress, i).call();
-      console.log({ _pendingReward })
       const amount = Web3.utils.fromWei(deposit.amount);
       const pendingReward = Web3.utils.fromWei(_pendingReward);
       totalDeposit += Number(amount)
