@@ -65,10 +65,19 @@ const StakePopUp = (props) => {
       setRamaAmount(usdtToRama)
     }
   }, [selectedCurrency, inputCurrencyAmount])
+
+
+  const getPriceBySymbol = (rawData,symbol) => {
+    let price = rawData.filter((item) => { return item.symbol === symbol })
+    if (price && price.length>0) {
+      return Number(price[0].price)
+    }
+    
+    return 0;
+  }
   const loadCurrencyData = async () => {
-    let prices = await axios.get(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ctron%2Cbinancecoin%2Clitecoin&vs_currencies=usd"
-    )
+    let prices = await axios.get("https://api.binance.com/api/v3/ticker/price")
+
     prices = prices.data
 
     const _currencies = []
@@ -76,15 +85,15 @@ const StakePopUp = (props) => {
     for (let rawCurrency of rawCurrencies) {
       let price = rawCurrency.price
       if (rawCurrency.id === "eth") {
-        price = prices.ethereum.usd
+        price = getPriceBySymbol(prices,"ETHUSDT")
       } else if (rawCurrency.id === "trx") {
-        price = prices.tron.usd
+        price = getPriceBySymbol(prices,"TRXUSDT")
       } else if (rawCurrency.id === "btc") {
-        price = prices.bitcoin.usd
+        price = getPriceBySymbol(prices,"BTCUSDT")
       } else if (rawCurrency.id === "bnb") {
-        price = prices.binancecoin.usd
+        price = getPriceBySymbol(prices,"BNBUSDT")
       } else if (rawCurrency.id === "ltc") {
-        price = prices.litecoin.usd
+        price = getPriceBySymbol(prices,"LTCUSDT")
       }
 
       _currencies.push({ ...rawCurrency, price })
